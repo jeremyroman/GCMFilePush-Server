@@ -1,0 +1,3 @@
+build.xml
+*.class
+war/WEB-INF/lib
