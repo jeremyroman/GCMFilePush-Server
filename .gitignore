@@ -1,3 +1,5 @@
 build.xml
 *.class
 war/WEB-INF/lib
+war/WEB-INF/appengine-web.xml
+war/WEB-INF/appengine-generated/local_db.bin

@@ -5,11 +5,27 @@
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
   <servlet>
-    <servlet-name>hello</servlet-name>
-    <servlet-class>com.jeremyroman.gcmfilepush.server.HelloServlet</servlet-class>
+    <servlet-name>registration</servlet-name>
+    <servlet-class>com.jeremyroman.gcmfilepush.server.RegistrationServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>hello</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <servlet-name>registration</servlet-name>
+    <url-pattern>/registration/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>push</servlet-name>
+    <servlet-class>com.jeremyroman.gcmfilepush.server.PushServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>push</servlet-name>
+    <url-pattern>/push/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>client-config</servlet-name>
+    <servlet-class>com.jeremyroman.gcmfilepush.server.ClientConfigServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>client-config</servlet-name>
+    <url-pattern>/client-config</url-pattern>
   </servlet-mapping>
 </web-app>
