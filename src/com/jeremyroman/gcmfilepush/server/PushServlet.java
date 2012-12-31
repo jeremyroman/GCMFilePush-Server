@@ -59,7 +59,8 @@ public class PushServlet extends HttpServlet {
     // Dispatch to GCM.
     String senderKey = System.getProperty("com.jeremyroman.gcmfilepush.server.SENDER_KEY");
     if (senderKey == null || senderKey.isEmpty()) {
-      throw new RuntimeException("sender key not set");
+      response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+      return;
     }
     Sender sender = new Sender(senderKey);
     Message message = new Message.Builder()
