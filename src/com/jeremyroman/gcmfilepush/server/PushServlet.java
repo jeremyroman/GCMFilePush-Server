@@ -50,7 +50,7 @@ public class PushServlet extends HttpServlet {
       return;
     }
 
-    // Ensure the registration ID exists.
+    // Ensure the registration ID is present.
     if (registrationId == null || registrationId.isEmpty()) {
       response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
       return;
