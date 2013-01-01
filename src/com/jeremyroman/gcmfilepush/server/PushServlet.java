@@ -31,10 +31,8 @@ public class PushServlet extends HttpServlet {
 
     // Read parameters and check that everything is in order.
     Key key = ServerUtils.getRegistrationKey(request);
-    String url = request.getParameter("url");
-    String filename = request.getParameter("filename");
-    if (key == null || url == null || filename == null ||
-        url.length() + filename.length() > 2048) {
+    if (key == null || request.getParameter("url") == null ||
+        request.getParameter("filename") == null) {
       response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
       return;
     }
@@ -63,11 +61,11 @@ public class PushServlet extends HttpServlet {
       return;
     }
     Sender sender = new Sender(senderKey);
-    Message message = new Message.Builder()
-        .addData("url", url)
-        .addData("filename", filename)
-        .build();
-    Result result = sender.send(message, registrationId, 5 /* retries */);
+    Message.Builder message = new Message.Builder();
+    for (String parameter : request.getParameterNames()) {
+      message.addData(parameter, request.getParameter(parameter));
+    }
+    Result result = sender.send(message.build(), registrationId, 5 /* retries */);
 
     // Check for an error in the GCM response.
     if (result.getMessageId() == null) {
